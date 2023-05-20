@@ -1,9 +1,13 @@
 import React from 'react'
+import Banner from './Banner'
+import CategoriseToys from './TabSection/CategoriseToys'
+
 
 const Main = () => {
   return (
     <div>
-        <p>afajfdlakfj</p>
+      <Banner></Banner>
+      <CategoriseToys></CategoriseToys>
     </div>
   )
 }

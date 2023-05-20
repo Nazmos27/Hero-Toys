@@ -3,23 +3,22 @@ import loginImg from '../../../src/images/loginpage.png'
 import { AuthContext } from '../../../AuthProvider'
 
 const Login = () => {
-    const {createUser,user} = useContext(AuthContext)
+    const {logIn,user} = useContext(AuthContext)
+
 
     const handleLogin = (event) => {
         event.preventDefault()
-        const form = event.target
-        const email = form.email.value
-        const password = form.password.value
-        createUser(email,password)
+        const email = event.target.email.value
+        const password = event.target.password.value
+        logIn(email,password)
         .then(result => {
-            const user = result.user
-            console.log(user);
+            console.log(result.user)
         })
         .catch(error => {
             console.log(error.message);
         })
-        console.log(user);
-    }
+    } 
+
 
     return (
         <div>
