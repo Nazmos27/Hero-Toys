@@ -2,16 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../AuthProvider'
 import MyToyCard from './MyToyCard'
 import Swal from 'sweetalert2'
+import UpdateToys from './UpdateToys'
 
 const MyToys = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
-    const [toysInfo,setToysInfo] =useState([])
-    useEffect(()=>{
+    const [toysInfo, setToysInfo] = useState([])
+    useEffect(() => {
         fetch(`https://assignment-11-serverside-eight.vercel.app/addToys?email=${user.email}`)
-        .then(res => res.json())
-        .then(data => setToysInfo(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setToysInfo(data))
+    }, [])
 
 
     const handleDelete = (id) => {
@@ -23,37 +24,46 @@ const MyToys = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addToys/${id}`,{
-                method: 'DELETE'
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if(data.deletedCount>0){
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
-                    setToysInfo(toysInfo.filter(toy => toy._id !== id))
-                }
-            })
-             
+                fetch(`http://localhost:5000/addToys/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            setToysInfo(toysInfo.filter(toy => toy._id !== id))
+                        }
+                    })
+
             }
-          })
-        
-
-
-
-            
+        })
     }
 
-  return (
-    <div>
-        <h1>My Toys</h1>
-        <div className="overflow-x-auto w-full">
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+
+
+
+
+    return (
+        <div>
+            <h1>My Toys</h1>
+            <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     {/* head */}
                     <thead>
@@ -69,18 +79,22 @@ const MyToys = () => {
                         {
                             toysInfo.map(item => <MyToyCard
                                 key={item._id}
-                                data = {item}
-                                handleDelete = {handleDelete}
-                                ></MyToyCard>)
+                                data={item}
+                                handleDelete={handleDelete}
+                                openModal={openModal}
+                            ></MyToyCard>)
                         }
                     </tbody>
-                    </table>
-                    </div>
-        {
-            
-        }
-    </div>
-  )
+                </table>
+            </div>
+            {isOpen && (
+                <UpdateToys
+                    // handleUpdate={handleUpdate}
+                    closeModal={closeModal}
+                ></UpdateToys>
+            )}
+        </div>
+    )
 }
 
 export default MyToys

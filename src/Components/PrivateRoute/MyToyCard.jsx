@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MyToyCard = ({ data , handleDelete }) => {
+const MyToyCard = ({ data , handleDelete, openModal }) => {
     const {_id, productName, img, price, quantity, rating, description, category, name, email } = data
     
 
@@ -27,7 +27,7 @@ const MyToyCard = ({ data , handleDelete }) => {
             </td>
             <td>Available Products : {quantity}</td>
             <th>
-                <button className="btn btn-danger btn-sm">Update</button>
+                <button onClick={openModal} className="btn btn-danger btn-sm">Update</button>
             </th>
             <th>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-sm">
