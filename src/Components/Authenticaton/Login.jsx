@@ -1,9 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import loginImg from '../../../src/images/loginpage.png'
 import { AuthContext } from '../../../AuthProvider'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const {logIn,user} = useContext(AuthContext)
+    const [success,setSuccess] = useState('')
+    const [error,setError] = useState('')  
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
 
 
     const handleLogin = (event) => {
@@ -13,9 +19,12 @@ const Login = () => {
         logIn(email,password)
         .then(result => {
             console.log(result.user)
+            setSuccess("Log In Successful")
+            navigate(from,{replace:true})
         })
         .catch(error => {
-            console.log(error.message);
+            setError(error.message);
+            
         })
     } 
 
@@ -43,7 +52,11 @@ const Login = () => {
                                 <input type="text" name='password' required placeholder="password" className="input input-bordered rounded-none" />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+
                                 </label>
+                                <p className='text-sm font-semibold'>Don't Have An Account? <Link to="/registration" className='underline text-sm'>Register Now</Link></p>
+                                <p className='text-xs text-blue-600'>{success}</p>
+                                <p  className='text-xs text-red-600'>{error}</p>
                             </div>
                             <div className="form-control mt-6">
                                 <input type="submit" className='btn btn-primary' value="Log In" />

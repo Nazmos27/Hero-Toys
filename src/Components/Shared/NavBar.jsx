@@ -1,15 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../AuthProvider'
 
 const NavBar = () => {
     const {user,logOut} = useContext(AuthContext)
+    const [success,setSuccess] = useState('')
+    const [error,setError] = useState('')   
 
     const handleLogOut = () => {
         logOut()
         .then(()=>{})
         .catch(error => {
-            console.log(error.message)
+            setError(error.message)
         })
     }
     return (
@@ -28,7 +30,8 @@ const NavBar = () => {
                             <li><Link>Blogs</Link></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <img src={"https://cdn-icons-png.flaticon.com/512/1142/1142749.png?w=740&t=st=1684687799~exp=1684688399~hmac=ccd29a961f2013fc9b435e5440a4ec3b06bb5df50c172e9efae8b390d619b2d5"} className='h-20 w-20' alt="" />
+                    <a className="btn btn-ghost normal-case text-xl">Hero Toys</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -41,7 +44,7 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="w-10 rounded-full">
-                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img src={user?.displayImage} />
                     </div>
                     {
                         user? <button className='btn btn-primary' onClick={handleLogOut}>Logout</button> : <Link to="/login" className="btn">Log In</Link>

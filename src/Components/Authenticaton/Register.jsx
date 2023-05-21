@@ -34,6 +34,18 @@ const Register = () => {
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name='email' required placeholder="name" className="input input-bordered rounded-none" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">PhotoURL</span>
+                                </label>
+                                <input type="text" name='email' required placeholder="img url" className="input input-bordered rounded-none" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="text" name='email' required placeholder="email" className="input input-bordered rounded-none" />
