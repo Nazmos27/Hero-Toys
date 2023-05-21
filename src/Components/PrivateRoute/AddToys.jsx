@@ -29,7 +29,7 @@ const AddToys = () => {
 
         }
         console.log(addedToys);
-        fetch('http://localhost:5000/addToys',{
+        fetch('https://assignment-11-serverside-eight.vercel.app/addToys',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

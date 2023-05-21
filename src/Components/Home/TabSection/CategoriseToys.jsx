@@ -10,19 +10,19 @@ const CategoriseToys = () => {
 
     const targetMarvel = (event) => {
         const query = event.target.innerText
-        fetch(`http://localhost:5000/collection?category=marvel`)
+        fetch(`https://assignment-11-serverside-eight.vercel.app/collection?category=marvel`)
             .then(res => res.json())
             .then(data => setMarvelToys(data))
     }
 
     const targetDC = () => {
-        fetch(`http://localhost:5000/collection?category=dc`)
+        fetch(`https://assignment-11-serverside-eight.vercel.app/collection?category=dc`)
             .then(res => res.json())
             .then(data => setDcToys(data))
     }
 
     const targetStarWars = () => {
-        fetch(`http://localhost:5000/collection?category=star_wars`)
+        fetch(`https://assignment-11-serverside-eight.vercel.app/collection?category=star_wars`)
             .then(res => res.json())
             .then(data => setStarWarsToys(data))
     }
