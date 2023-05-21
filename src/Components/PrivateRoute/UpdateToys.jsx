@@ -1,17 +1,69 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../../AuthProvider'
+import Swal from 'sweetalert2'
+import { useLoaderData } from 'react-router-dom'
 
-const UpdateToys = ({ closeModal }) => {
+const UpdateToys = () => {
     const {user} = useContext(AuthContext)
+    const productData = useLoaderData()
+    console.log(productData);
+    const {_id} = productData
+
+
+    const handleUpdate = event => {
+        event.preventDefault()
+        const form = event.target
+        const productName = form.productName.value
+        const email = form.sellerEmail.value
+        const img = form.img.value
+        const name = form.sellerName.value
+        const category = form.category.value
+        const description = form.description.value
+        const quantity = form.quantity.value
+        const price = form.price.value
+        const rating = form.rating.value
+        const updatedToys = {
+            productName,
+            email,
+            img,
+            name,
+            category,
+            description,
+            quantity,
+            price,
+            rating
+
+        }
+        fetch(`http://localhost:5000/addToys/${_id}`,{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedToys)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.modifiedCount>0){
+                    Swal.fire({
+                        title:'Success!',
+                        text:'Product Updated Successfully',
+                        icon:'success',
+                        confirmButtonText:'Cool'
+                    })
+                }
+            })
+    }
+    
+
+    
+
+
+
+
     return (
         <div>
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-                <div className="modal modal-open">
-                    <div className="modal-box">
-                        <h2 className="modal-title">Update Product's Info</h2>
-                        <div className="modal-body">
-                            {/* this is input field part */}
-                            <form >
+            <form onSubmit={handleUpdate}>
                                 <div className="card md:grid md:grid-cols-2 gap-4 w-full  shadow-2xl bg-base-100">
                                     <div className="form-control">
                                         <label className="label">
@@ -67,16 +119,9 @@ const UpdateToys = ({ closeModal }) => {
                                         </label>
                                         <input type="text" name='description' placeholder="(eg:material used for it,description of the character)" className="input input-bordered italic" />
                                     </div>
-                                    <input type="submit" value="Add Your Toy" className='btn btn-primary col-span-2' />
+                                    <input type="submit" value="Update Information" className='btn btn-primary col-span-2' />
                                 </div>
                             </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button className='btn btn-danger btn-sm' onClick={closeModal}>Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

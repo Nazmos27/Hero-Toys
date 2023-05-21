@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const MyToyCard = ({ data , handleDelete, openModal }) => {
+const MyToyCard = ({ data , handleDelete}) => {
     const {_id, productName, img, price, quantity, rating, description, category, name, email } = data
     
 
@@ -27,7 +28,7 @@ const MyToyCard = ({ data , handleDelete, openModal }) => {
             </td>
             <td>Available Products : {quantity}</td>
             <th>
-                <button onClick={openModal} className="btn btn-danger btn-sm">Update</button>
+                <Link to={`/updateToys/${_id}`}><button className="btn btn-danger btn-sm">Update</button></Link>
             </th>
             <th>
                 <button onClick={() => handleDelete(_id)} className="btn btn-circle btn-sm">

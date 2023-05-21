@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../AuthProvider'
 import MyToyCard from './MyToyCard'
 import Swal from 'sweetalert2'
-import UpdateToys from './UpdateToys'
+
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
@@ -46,15 +46,10 @@ const MyToys = () => {
         })
     }
 
-    const [isOpen, setIsOpen] = useState(false);
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+
+
 
 
 
@@ -81,18 +76,11 @@ const MyToys = () => {
                                 key={item._id}
                                 data={item}
                                 handleDelete={handleDelete}
-                                openModal={openModal}
                             ></MyToyCard>)
                         }
                     </tbody>
                 </table>
             </div>
-            {isOpen && (
-                <UpdateToys
-                    // handleUpdate={handleUpdate}
-                    closeModal={closeModal}
-                ></UpdateToys>
-            )}
         </div>
     )
 }
