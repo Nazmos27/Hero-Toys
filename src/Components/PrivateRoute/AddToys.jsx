@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../../AuthProvider'
+import Swal from 'sweetalert2'
 
 const AddToys = () => {
     const { user } = useContext(AuthContext)
@@ -39,6 +40,13 @@ const AddToys = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                Swal.fire({
+                    title:'Success!',
+                    text:'Product Added Successfully',
+                    icon:'success',
+                    confirmButtonText:'Cool'
+                })
+                event.target.reset()
             })
     }
 
