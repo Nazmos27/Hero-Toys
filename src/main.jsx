@@ -17,6 +17,7 @@ import MyToys from './Components/PrivateRoute/MyToys.jsx';
 import UpdateToys from './Components/PrivateRoute/UpdateToys.jsx';
 import AllToys from './Components/PrivateRoute/AllToys.jsx';
 import ErrorPage from './Components/ErrorPage.jsx';
+import ViewDetails from './Components/PrivateRoute/ViewDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
         path:"/allToys",
         element:<PrivateRoute><AllToys></AllToys></PrivateRoute>,
         loader:() => fetch('https://assignment-11-serverside-eight.vercel.app/addToys')
+      },
+      {
+        path:"/viewdetails/:id",
+        element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
+        loader:({params}) => fetch(`http://localhost:5000/collection/${params.id}`)
       }
     ]
   },

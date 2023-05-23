@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ToyDetailCard = ({ data }) => {
-    const { name, img, price, quantity, rating, description } = data
+    const {_id, name, img, price, quantity, rating, description } = data
     return (
         <div>
             <div className="card md:w-96 w-full md:m-2 m-0 mb-10 bg-gray-300 shadow-xl">
@@ -14,7 +15,7 @@ const ToyDetailCard = ({ data }) => {
                     <p>Ratings:{rating}</p>
                     <p>Available Product : {quantity}</p>
                     <div className="card-actions">
-                        <button className="btn btn-primary">View Details</button>
+                        <Link to={`/viewdetails/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                     </div>
                 </div>
             </div>
