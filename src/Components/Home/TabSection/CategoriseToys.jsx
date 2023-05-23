@@ -37,7 +37,7 @@ const CategoriseToys = () => {
                 </TabList>
 
                 <TabPanel>
-                    <div className='md:grid grid-cols-2 md:gap-4 md:px-36 md:my-10'>
+                    <div className='md:grid md:grid-cols-2 md:gap-4 gap-4 md:px-36 md:my-10'>
                         {
                             marvelToys.map(item => <ToyDetailCard
                                 key={item._id}

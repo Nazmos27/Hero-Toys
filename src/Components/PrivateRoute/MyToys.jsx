@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../../AuthProvider'
+import { AuthContext } from '../AuthProvider'
 import MyToyCard from './MyToyCard'
 import Swal from 'sweetalert2'
 

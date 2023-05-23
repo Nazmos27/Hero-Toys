@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../../AuthProvider'
+import { AuthContext } from '../AuthProvider'
 import Swal from 'sweetalert2'
 import { useLoaderData } from 'react-router-dom'
 

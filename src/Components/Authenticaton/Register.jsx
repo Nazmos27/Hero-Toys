@@ -1,21 +1,36 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../../AuthProvider'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../AuthProvider'
+import { Link } from 'react-router-dom'
+import { updateProfile } from 'firebase/auth'
 
 const Register = () => {
     const {createUser} = useContext(AuthContext)
+
+    const [success,setSuccess] = useState('')
+    const [error,setError] = useState('')  
 
     const handleRegister = event => {
         event.preventDefault()
         const form = event.target
         const email = form.email.value
         const password = form.password.value
+        const username = form.name.value
+        const photo = form.userImage.value
         createUser(email,password)
         .then(result => {
             const user = result.user
-            console.log(user);
+            console.log(user)
+            setSuccess("Registration Completed")
+            updateProfile(result.user, {
+                displayName: username, photoURL: photo
+              })
+              .then(()=> {
+                console.log("Profile Updated")
+              })
         })
         .catch(error => {
             console.log(error.message);
+            setError(error.message)
         })
     }
 
@@ -36,13 +51,13 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='email' required placeholder="name" className="input input-bordered rounded-none" />
+                                <input type="text" name='name' required placeholder="name" className="input input-bordered rounded-none" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">PhotoURL</span>
                                 </label>
-                                <input type="text" name='email' required placeholder="img url" className="input input-bordered rounded-none" />
+                                <input type="text" name='userImage' required placeholder="img url" className="input input-bordered rounded-none" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -55,9 +70,9 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="text" name='password' required placeholder="password" className="input input-bordered rounded-none" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <p className='text-sm font-semibold'>Already Have An Account? <Link to="/login" className='underline text-sm'>Please Login</Link></p>
+                                <p className='text-xs text-blue-600'>{success}</p>
+                                <p  className='text-xs text-red-600'>{error}</p>
                             </div>
                             <div className="form-control mt-6">
                                 <input type="submit" className='btn btn-primary' value="Log In" />

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../../AuthProvider'
+import { AuthContext } from '../AuthProvider'
 
 const AllToysCard = ({data}) => {
     const {user} = useContext(AuthContext)

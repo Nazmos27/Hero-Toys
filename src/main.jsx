@@ -9,18 +9,20 @@ import './index.css'
 import Main from './Components/Home/Main.jsx';
 import Login from './Components/Authenticaton/Login.jsx';
 import Register from './Components/Authenticaton/Register.jsx';
-import AuthProvider from '../AuthProvider.jsx';
+import AuthProvider from './Components/AuthProvider.jsx';
 import Blogs from './Components/Blogs.jsx';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 import AddToys from './Components/PrivateRoute/AddToys.jsx';
 import MyToys from './Components/PrivateRoute/MyToys.jsx';
 import UpdateToys from './Components/PrivateRoute/UpdateToys.jsx';
 import AllToys from './Components/PrivateRoute/AllToys.jsx';
+import ErrorPage from './Components/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
