@@ -51,12 +51,12 @@ const router = createBrowserRouter([
       {
         path:"/updateToys/:id",
         element:<PrivateRoute><UpdateToys></UpdateToys></PrivateRoute>,
-        loader:({params}) => fetch(`http://localhost:5000/addToys/${params.id}`)
+        loader:({params}) => fetch(`https://assignment-11-serverside-eight.vercel.app/addToys/${params.id}`)
       },
       {
         path:"/allToys",
         element:<PrivateRoute><AllToys></AllToys></PrivateRoute>,
-        loader:() => fetch('http://localhost:5000/addToys')
+        loader:() => fetch('https://assignment-11-serverside-eight.vercel.app/addToys')
       }
     ]
   },

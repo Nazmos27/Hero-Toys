@@ -34,7 +34,7 @@ const UpdateToys = () => {
             rating
 
         }
-        fetch(`http://localhost:5000/addToys/${_id}`,{
+        fetch(`https://assignment-11-serverside-eight.vercel.app/addToys/${_id}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -54,7 +54,8 @@ const AddToys = () => {
 
     return (
         <div>
-            <h1>this is add toy page</h1>
+            <h1 className='text-3xl text-center mt-16 mb-10'>Want to add some custom Toys?Here provide Detail info</h1>
+            <hr className='w-11/12 mx-auto border-[2px] px-20 my-10'/>
             <form onSubmit={handleSubmit}>
                 <div className="card md:grid md:grid-cols-2 gap-4 w-full  shadow-2xl bg-base-100">
                     <div className="form-control">
