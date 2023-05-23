@@ -1,6 +1,8 @@
 import React from 'react'
+import useTitle from '../CustomHooks/useTitle'
 
 const Blogs = () => {
+  useTitle('Blogs')
   return (
     <div className='mx-auto px-20'>
         <p className='text-5xl text-center'>Welcome to BLog Page</p>
@@ -63,7 +65,7 @@ NestJS is a progressive, extensible, and TypeScript-based web application framew
 
 
 
-<h1 className='text-3xl text-center'>What is MongoDB aggregate and how does it work (google it)?
+<h1 className='text-3xl text-center'>What is MongoDB aggregate and how does it work?
 </h1>
 <hr  className='border-black border-[2px] w-full' />
 <p className='p-5'>MongoDB's aggregate is a powerful framework for performing data aggregation operations on collections of documents. It allows you to process and transform data within the database and retrieve computed results based on various stages of aggregation.

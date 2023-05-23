@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../AuthProvider'
 import Swal from 'sweetalert2'
+import useTitle from '../../CustomHooks/useTitle'
 
 const AddToys = () => {
     const { user } = useContext(AuthContext)
+    useTitle("Add Toys")
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -15,7 +17,7 @@ const AddToys = () => {
         const category = form.category.value
         const description = form.description.value
         const quantity = form.quantity.value
-        const price = form.price.value
+        const price = parseInt(form.price.value)
         const rating = form.rating.value
         const addedToys = {
             productName,

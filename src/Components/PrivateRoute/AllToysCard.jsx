@@ -6,7 +6,7 @@ const AllToysCard = ({data}) => {
     const {_id, productName, img, price, quantity, rating, description, category, name, email} = data 
   return (
     <div>
-        <div className="card w-96 m-0 bg-gray-300 shadow-xl">
+        <div className="card md:w-96 w-full m-0 bg-gray-300 shadow-xl my-10">
                 <figure className="px-10 pt-10">
                     <img src={img} alt="product img" className="rounded-xl" />
                 </figure>

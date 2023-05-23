@@ -2,12 +2,14 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../AuthProvider'
 import Swal from 'sweetalert2'
 import { useLoaderData } from 'react-router-dom'
+import useTitle from '../../CustomHooks/useTitle'
 
 const UpdateToys = () => {
     const {user} = useContext(AuthContext)
+    useTitle("Update toys")
     const productData = useLoaderData()
     console.log(productData);
-    const {_id} = productData
+    const {_id,productName,img,price,rating,description,category,quantity} = productData
 
 
     const handleUpdate = event => {
@@ -69,13 +71,13 @@ const UpdateToys = () => {
                                         <label className="label">
                                             <span className="label-text">Photo URL</span>
                                         </label>
-                                        <input type="text" name='img' placeholder="image url" className="input input-bordered italic" />
+                                        <input type="text" defaultValue={img} name='img' placeholder="image url" className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Product Name</span>
                                         </label>
-                                        <input type="text" name='productName' placeholder="Name" required className="input input-bordered italic" />
+                                        <input type="text" defaultValue={productName} name='productName' placeholder="Name" required className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
@@ -93,31 +95,31 @@ const UpdateToys = () => {
                                         <label className="label">
                                             <span className="label-text">Category</span>
                                         </label>
-                                        <input type="text" name='category' placeholder="(eg:marvel,dc,star_wars etc...)" required className="input input-bordered italic" />
+                                        <input type="text" name='category' placeholder="(eg:marvel,dc,star_wars etc...)" defaultValue={category} className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Price</span>
                                         </label>
-                                        <input type="text" name='price' placeholder="$" required className="input input-bordered italic" />
+                                        <input type="text" defaultValue={price} name='price' placeholder="$"  className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Rating</span>
                                         </label>
-                                        <input type="text" name='rating' placeholder="(out of 5)" className="input input-bordered italic" />
+                                        <input type="text" defaultValue={rating} name='rating' placeholder="(out of 5)" className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Available Quantity</span>
                                         </label>
-                                        <input type="text" name='quantity' required className="input input-bordered italic" />
+                                        <input type="text" defaultValue={quantity} name='quantity' required className="input input-bordered italic" />
                                     </div>
                                     <div className="form-control col-span-2">
                                         <label className="label">
                                             <span className="label-text">Short Description</span>
                                         </label>
-                                        <input type="text" name='description' placeholder="(eg:material used for it,description of the character)" className="input input-bordered italic" />
+                                        <input type="text" defaultValue={description} name='description' placeholder="(eg:material used for it,description of the character)" className="input input-bordered italic" />
                                     </div>
                                     <input type="submit" value="Update Information" className='btn btn-primary col-span-2' />
                                 </div>

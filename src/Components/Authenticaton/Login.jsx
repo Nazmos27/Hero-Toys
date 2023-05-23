@@ -5,11 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaBeer, FaGoogle } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import { ToastContainer } from 'react-toastify';
+import useTitle from '../../CustomHooks/useTitle';
 
 const Login = () => {
     const { logIn, user, googleSignIn } = useContext(AuthContext)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
+    useTitle('Login')
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/'
@@ -101,6 +104,17 @@ const Login = () => {
                                     <FaGoogle onClick={handleGoogle} className='text-gray-400 text-4xl mx-auto mt-6'></FaGoogle>
                                     </div>
                                 </div>
+                                <ToastContainer
+                                position="top-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="light"></ToastContainer>
                             </div>
                         </div>
                     </div>

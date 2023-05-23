@@ -9,7 +9,7 @@ const CategoriseToys = () => {
     const [starWarsToys, setStarWarsToys] = useState([])
 
     const targetMarvel = (event) => {
-        const query = event.target.innerText
+        // const query = event.target.innerText
         fetch(`https://assignment-11-serverside-eight.vercel.app/collection?category=marvel`)
             .then(res => res.json())
             .then(data => setMarvelToys(data))

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../AuthProvider'
 import { Navigate, useLocation } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 const PrivateRoute = ({children}) => {
     const location = useLocation()
@@ -13,7 +14,9 @@ const PrivateRoute = ({children}) => {
         return children
     }
     else{
-        alert("Pelase login to proceed")
+        // alert("Pelase login to proceed")
+        toast("You have to Log In first!")
+        
         return <Navigate to='/login' state={{from:location}} replace={true}></Navigate>
     }
 }
