@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       {
         path:"/viewdetails/:id",
         element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
-        loader:({params}) => fetch(`http://localhost:5000/collection/${params.id}`)
+        loader:({params}) => fetch(`https://assignment-11-serverside-eight.vercel.app/collection/${params.id}`)
       }
     ]
   },

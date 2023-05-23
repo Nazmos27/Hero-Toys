@@ -13,7 +13,7 @@ const AllToys = () => {
   const [query,setQuery] = useState('')
   useEffect(()=>{
     const fetchUser = async () => {
-      const result = await fetch(`http://localhost:5000/addToysCollection?search=${query}`)
+      const result = await fetch(`https://assignment-11-serverside-eight.vercel.app/addToysCollection?search=${query}`)
       const data = await result.json()
       setOrdered(data)
     }
@@ -22,13 +22,13 @@ const AllToys = () => {
 
   
   const handleAsscending = async() => {
-    const res = await fetch(`http://localhost:5000/addToys?value=price&type=-1`)
+    const res = await fetch(`https://assignment-11-serverside-eight.vercel.app/addToys?value=price&type=-1`)
     const data =  await res.json()
     console.log(data);
     setOrdered(data)
   }
   const handleDesscending = async() => {
-    const res = await fetch(`http://localhost:5000/addToys?value=price&type=1`)
+    const res = await fetch(`https://assignment-11-serverside-eight.vercel.app/addToys?value=price&type=1`)
     const data =  await res.json()
     console.log(data);
     setOrdered(data)
